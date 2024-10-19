@@ -1,0 +1,19 @@
+
+apr_checkpoint_path: out\run_28_09_24_19_31_apr_last.pth
+x_thr: 0.3
+q_thr: 1.5
+apr_params:
+  encoder_name: imagenet
+  mlp_dim: 1024
+  eigenplaces:
+    backbone: ResNet50
+    output_dim: 2048
+  imagenet:
+    backbone: resnet50
+    output_dim: 2048
+  orientation_representation: quat
+  dropout: 0.1
+
+
+
+

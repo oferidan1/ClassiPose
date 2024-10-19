@@ -1,0 +1,11 @@
+
+device_id: cuda:0
+mode: test 
+classifier_checkpoint_path: out\run_06_10_24_22_51_cls_last.pth
+dataset:
+  dataset_path: F:\CambridgeLandmarks\ShopFacade
+  labels_file: F:\CambridgeLandmarks\ShopFacade\GT_ShopFacade_train.csv
+  transform: test_baseline
+classifier_params:
+  dropout: 0.1
+  

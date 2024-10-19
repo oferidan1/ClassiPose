@@ -1,0 +1,21 @@
+
+device_id: cuda:0
+mode: train 
+classifier_checkpoint_path: null
+dataset:
+  dataset_path: F:\CambridgeLandmarks\ShopFacade
+  labels_file: F:\CambridgeLandmarks\ShopFacade\GT_ShopFacade_train.csv
+  transform: train_baseline
+  pose_sample_probs: [0.5] # todo update based on impl
+train_params:
+  n_epochs: 20
+  lr: 0.01
+  weight_decay: 0.0000001
+  lr_scheduler_step_size: 10
+  lr_scheduler_gamma: 0.1
+  batch_size: 16
+  num_workers: 4
+  n_freq_print: 5
+  n_freq_checkpoint: 10
+classifier_params:
+  dropout: 0.1

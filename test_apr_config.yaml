@@ -1,0 +1,23 @@
+
+device_id: cuda:0
+mode: test 
+apr_checkpoint_path: out\run_28_09_24_19_31_apr_last.pth
+dataset:
+  dataset_path: F:\CambridgeLandmarks\ShopFacade
+  labels_file: F:\CambridgeLandmarks\ShopFacade\GT_ShopFacade_test.csv
+  transform: test_baseline
+apr_params:
+  encoder_name: imagenet
+  mlp_dim: 1024
+  eigenplaces:
+    backbone: ResNet50
+    output_dim: 2048
+  imagenet:
+    backbone: resnet50
+    output_dim: 2048
+  orientation_representation: quat
+  dropout: 0.1
+
+
+
+
