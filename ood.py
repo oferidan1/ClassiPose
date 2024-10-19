@@ -72,7 +72,7 @@ def read_labels_file(labels_file, dataset_path):
 scene = "shop"
 model = "dfnet"
 thr_x = 1
-thr_q = 6
+thr_q = 8
 dataset = {}
 for split in ["train", "test"]:
     dataset[split] = {"dataset_path": "F:/CambridgeLandmarks/"+scene,
@@ -90,14 +90,15 @@ train_features, train_names = load_features(dataset["train"]["features_path"], i
 # TODO need to have a more robust clustering method - automatic way to evaluate or refine clusters
 k = 10
 k_means = KMeans(n_clusters=k, random_state=0, n_init="auto")
-k_means.fit(train_pose_gt)
+train_pose = train_pose_gt # train_pose_predict # 
+k_means.fit(train_pose)
 centers = k_means.cluster_centers_
-cluster_ids = k_means.predict(train_pose_gt)
+cluster_ids = k_means.predict(train_pose)
 clusters_stats = {}
 for c_id in range(k):
     # get cluster members
     _, c_poses, c_features = get_cluster_members(c_id, cluster_ids, 
-                                                 train_features, train_pose_gt)
+                                                 train_features, train_pose)
     # compute centroids
     pose_centroid = centers[c_id]
     feature_centroid = np.mean(c_features, axis=0)
@@ -129,7 +130,7 @@ for i, est_pose in enumerate(test_pose_predict):
 
     # TODO maybe it's enough to compute distance only to the centroid and see if it is > mean/0.95 quantile
     _, c_pose, c_feature = get_cluster_members(c_id, cluster_ids, 
-                                                 train_features, train_pose_gt)
+                                                 train_features, train_pose)
     c_stats = clusters_stats[cid]
     c_feature_centroid = c_stats["feature_centroid"]
     c_pose_centroid = c_stats["pose_centroid"]    
